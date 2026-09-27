@@ -19,7 +19,7 @@ def get_ocr_engine():
     global _ocr_engine
     if _ocr_engine is None:
         from paddleocr import PaddleOCR
-        _ocr_engine = PaddleOCR(use_angle_cls=True, lang="en", show_log=False)
+        _ocr_engine = PaddleOCR(use_angle_cls=True, lang="en")
     return _ocr_engine
 
 
