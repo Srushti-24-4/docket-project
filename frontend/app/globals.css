@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap");
+
+body {
+  background-color: #0f2438;
+  background-image: linear-gradient(rgba(62, 110, 142, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(62, 110, 142, 0.35) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: #f4f6f5;
+}
+
+::selection {
+  background: #e3a857;
+  color: #0a1826;
+}
