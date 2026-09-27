@@ -3,7 +3,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct, Filter, FieldCondition, MatchAny, MatchValue
 
 from app.core.config import get_settings
-from app.models.schemas import Chunk, SearchResult
+from app.models.schemas import Chunk, SearchResult  # <-- Ensure SearchResult is imported here
 
 settings = get_settings()
 EMBEDDING_DIM = 768  # matches OUTPUT_DIM in embeddings.py
@@ -53,12 +53,14 @@ def search(
     if document_ids:
         must_conditions.append(FieldCondition(key="document_id", match=MatchAny(any=document_ids)))
 
-    hits = client.search(
+    response = client.query_points(
         collection_name=settings.qdrant_collection,
-        query_vector=query_vector,
+        query=query_vector,
         limit=top_k,
         query_filter=Filter(must=must_conditions),
     )
+
+    hits = response.points
 
     return [
         SearchResult(chunk=Chunk(**hit.payload), score=hit.score)
